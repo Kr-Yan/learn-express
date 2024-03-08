@@ -37,6 +37,17 @@ app.get('/read/usernames', (req, res) => {
   res.send(usernames);
 });
 
+// New endpoint to search for a user by username
+app.get('/read/username/:name', (req, res) => {
+  const { name } = req.params;
+  const user = users.find(user => user.username === name);
+  if (user) {
+    res.json({ id: user.id, username: user.username, email: user.email });
+  } else {
+    res.status(404).json({ error: 'User not found' });
+  }
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/write/adduser', addMsgToRequest);
