@@ -8,6 +8,10 @@ const port = 8000;
 const readUsers = require('./readUsers');
 const writeUsers = require('./writeUsers');
 
+console.log(readUsers); // This should log the function/object that Express can use
+console.log(writeUsers); 
+
+
 let users;
 fs.readFile(path.resolve(__dirname, '../data/users.json'), function(err, data) {
   console.log('reading file ... ');
